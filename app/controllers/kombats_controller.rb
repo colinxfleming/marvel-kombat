@@ -14,6 +14,7 @@ class KombatsController < ApplicationController
     # Outcome is in the KombatLogic concern.
     # Display logic is in kombats_helper.
     @result = calculate_fight_outcome params
+    puts @result
     respond_to { |format| format.js }
   end
 end
