@@ -3,16 +3,42 @@
 module KombatLogic
   extend ActiveSupport::Concern
 
-  SEED_NUMBER_MAX = 9
+  SEED_NUMBER_MAX = 9.freeze
   IDENTICAL = 'same'.freeze
+  INSTANT_WINS = ['gamma', 'radioactive'].freeze
+  SPLIT_REGEX = %r{\s+}.freeze
+  DESCRIPTION_CLEANUP_REGEX = %r{[[:punct:]]}.freeze
 
   def calculate_fight_outcome(params)
-    h1 = params[:hero_1]
-    h2 = params[:hero_2]
-    return IDENTICAL if h1 == h2 # Small easter egg
+    return { winner: IDENTICAL } if params[:hero_1] == params[:hero_2] # No parallel universe fights please
+    marvel = MarvelService.new
+    hero1 = marvel.hero_data_for params[:hero_1]
+    hero2 = marvel.hero_data_for params[:hero_2]
 
+    h1_value = calculate_fight_value hero1, params[:hero_1_seed].to_i
+    h2_value = calculate_fight_value hero2, params[:hero_2_seed].to_i
 
+    winner = if h1_value == h2_value
+               0
+             elsif h1_value > h2_value
+               1
+             else
+               2
+             end
+    {
+      winner: winner, # 0 is a tie;
+      hero_1: hero1,
+      hero_2: hero2
+    }
+  end
 
+  def calculate_fight_value(hero, seed)
+    result = hero[:description].split(SPLIT_REGEX)
+      .map { |s| s.gsub(DESCRIPTION_CLEANUP_REGEX, '') }
+      .map(&:downcase)[seed - 1] # Adjust seed to array notation
+
+    return 9001 if INSTANT_WINS.include? result # It's over 9000!
+    result.length
   end
 end
 

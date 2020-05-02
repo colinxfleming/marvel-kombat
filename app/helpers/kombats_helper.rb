@@ -1,6 +1,6 @@
 module KombatsHelper
   def display(result)
-    return same_thing if result == KombatLogic::IDENTICAL
+    return same_thing if result[:winner] == KombatLogic::IDENTICAL
   end
 
   private

@@ -6,7 +6,7 @@ class KombatsController < ApplicationController
     # or may have descriptions under the seed #. Filter those out.
     # Poor 3-D Man :(
     @hero_selection = MarvelService.new.hero_selection
-      .reject { |x| x[:description].blank? || x[:description].split(%r{\s+}).count < SEED_NUMBER_MAX }
+      .reject { |x| x[:description].blank? || x[:description].split(SPLIT_REGEX).count < SEED_NUMBER_MAX }
       .map { |x| [x[:name], x[:id]] }
   end
 
