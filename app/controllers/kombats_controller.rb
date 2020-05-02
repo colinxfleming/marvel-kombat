@@ -1,5 +1,6 @@
 class KombatsController < ApplicationController
   def index
+    @content = ::MarvelService.new
   end
 
   def fight

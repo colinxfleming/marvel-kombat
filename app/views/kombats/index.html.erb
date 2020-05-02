@@ -2,6 +2,9 @@
 <p>Find me in app/views/kombats/index.html.erb</p>
 nothing but a good time
 
+<p>
+  <%= @content %>  
+</p>
 
 <%= form_with url: kombat_path, method: :post do %>
   <%= text_field_tag :hero_1, placeholder: 'hero 1' %>
@@ -9,4 +12,4 @@ nothing but a good time
   <%= submit_tag :submit %>
 <% end %>
 
-<div id="result"></div>
+<p id="result"></p>
