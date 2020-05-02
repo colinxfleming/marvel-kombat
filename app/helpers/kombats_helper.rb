@@ -1,0 +1,2 @@
+module KombatsHelper
+end

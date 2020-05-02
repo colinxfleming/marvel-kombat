@@ -1,0 +1,12 @@
+<h1>Kombats#index</h1>
+<p>Find me in app/views/kombats/index.html.erb</p>
+nothing but a good time
+
+
+<%= form_with url: kombat_path, method: :post do %>
+  <%= text_field_tag :hero_1, placeholder: 'hero 1' %>
+  <%= text_field_tag :hero_2, placeholder: 'hero 2' %>
+  <%= submit_tag :submit %>
+<% end %>
+
+<div id="result"></div>
