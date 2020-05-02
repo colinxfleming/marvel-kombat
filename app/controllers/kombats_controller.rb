@@ -1,18 +1,19 @@
 class KombatsController < ApplicationController
+  include KombatLogic
+
   def index
-    @hero_selection = MarvelService.new.hero_selection.map { |x| [x[:name], x[:id]] }
+    # Some heroes (like, for ex, 3-D Man) don't have descriptions,
+    # or may have descriptions under the seed #. Filter those out.
+    # Poor 3-D Man :(
+    @hero_selection = MarvelService.new.hero_selection
+      .reject { |x| x[:description].blank? || x[:description].split(%r{\s+}).count < SEED_NUMBER_MAX }
+      .map { |x| [x[:name], x[:id]] }
   end
 
   def fight
-    hero_1 = params[:hero_1]
-    hero_2 = params[:hero_2]
-    @result = "#{hero_2} beats #{hero_1}"
+    # Outcome is in the KombatLogic concern.
+    # Display logic is in kombats_helper.
+    @result = calculate_fight_outcome params
     respond_to { |format| format.js }
-  end
-
-  private
-
-  def fight_params
-    # todo
   end
 end

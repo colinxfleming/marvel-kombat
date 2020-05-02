@@ -9,8 +9,8 @@ class MarvelService
     request(CHAR_INDEX).map { |x| _map_character(x) }
   end
 
-  def hero_data_for(hero)
-
+  def hero_data_for(hero_id)
+    request("#{CHAR_INDEX}/#{hero_id}").map { |x| _map_character(x) }[0]
   end
 
   def _map_character(char)

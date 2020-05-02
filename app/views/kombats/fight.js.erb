@@ -1,1 +1,3 @@
-document.getElementById("result").innerHTML = "<%= j @result %>";
+var outcome = "<%= j display(@result) %>"
+
+document.getElementById("result").innerHTML = outcome;

@@ -9,10 +9,11 @@ nothing but a good time
 <%= form_with url: kombat_path, method: :post do %>
   <%= select_tag :hero_1,
                  options_for_select(@hero_selection) %>
+  <%= select_tag :hero_1_seed, options_for_select((1..KombatLogic::SEED_NUMBER_MAX)) %>
 
   <%= select_tag :hero_2,
                  options_for_select(@hero_selection) %>
-
+  <%= select_tag :hero_2_seed, options_for_select((1..KombatLogic::SEED_NUMBER_MAX)) %>
   <%= submit_tag :submit %>
 <% end %>
 
