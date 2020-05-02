@@ -1,18 +1,33 @@
 <h1>Fight It Out</h1>
 <p>Select a hero and a seed number and see who would win in a fight.</p>
 
-<%= form_with url: kombat_path, method: :post do %>
-  <%= select_tag :hero_1,
-                 options_for_select(@hero_selection) %>
-  <%= select_tag :hero_1_seed,
-                 options_for_select((1..KombatLogic::SEED_NUMBER_MAX)) %>
+<div class="form">
+  <%= form_with url: kombat_path, method: :post do %>
+    <div class="hero-1-input">
+      <p>Select one hero and a seed number:</p>
 
-  <%= select_tag :hero_2,
-                 options_for_select(@hero_selection) %>
-  <%= select_tag :hero_2_seed,
-                 options_for_select((1..KombatLogic::SEED_NUMBER_MAX)) %>
+      <%= select_tag :hero_1,
+                     options_for_select(@hero_selection) %>
+      <%= select_tag :hero_1_seed,
+                     options_for_select((1..KombatLogic::SEED_NUMBER_MAX)) %>
+    </div>
 
-  <%= submit_tag :submit %>
-<% end %>
+    <div class="hero-2-input">
+      <p>Select a second hero and a seed number:</p>
+
+      <div class="hero-2-name">
+        <%= select_tag :hero_2,
+                       options_for_select(@hero_selection) %>
+        <%= select_tag :hero_2_seed,
+                       options_for_select((1..KombatLogic::SEED_NUMBER_MAX)) %>
+      </div>
+    </div>
+    <br />
+
+    <div class="submit-section">
+      <%= submit_tag :submit %>    
+    </div>
+  <% end %>  
+</div>
 
 <p id="result"></p>

@@ -20,8 +20,7 @@ module KombatsHelper
     winner = result[:outcome] == 1 ? result[:hero_1] : result[:hero_2]
     loser = result[:outcome] == 1 ? result[:hero_2] : result[:hero_1]
     safe_join([
-      content_tag(:p, "#{winner[:name]} has defeated #{loser[:name]}!"),
-      content_tag(:p, " The galaxy is at peace.")
+      content_tag(:p, "According to our supercomputer, #{winner[:name]} would defeat #{loser[:name]}!"),
     ])
   end
 

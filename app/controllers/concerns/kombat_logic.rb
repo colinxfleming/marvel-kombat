@@ -27,12 +27,12 @@ module KombatLogic
     h2_value = calculate_fight_value hero2, params[:hero_2_seed].to_i
 
     outcome_code = if h1_value == h2_value
-               TIE
-             elsif h1_value > h2_value
-               1
-             else
-               2
-             end
+                     TIE
+                   elsif h1_value > h2_value
+                     1
+                   else
+                     2
+                   end
     {
       outcome: outcome_code,
       hero_1: hero1,
