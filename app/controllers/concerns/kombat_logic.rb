@@ -14,9 +14,14 @@ module KombatLogic
 
   def calculate_fight_outcome(params)
     return { outcome: IDENTICAL } if params[:hero_1] == params[:hero_2] # No parallel universe fights please
-    marvel = MarvelService.new
-    hero1 = marvel.hero_data_for params[:hero_1]
-    hero2 = marvel.hero_data_for params[:hero_2]
+
+    begin
+      marvel = MarvelService.new
+      hero1 = marvel.hero_data_for params[:hero_1]
+      hero2 = marvel.hero_data_for params[:hero_2]
+    rescue MarvelService::APIError => e
+      return { outcome: ERROR, reason: e.message }
+    end
 
     h1_value = calculate_fight_value hero1, params[:hero_1_seed].to_i
     h2_value = calculate_fight_value hero2, params[:hero_2_seed].to_i

@@ -2,7 +2,7 @@ module KombatsHelper
   def display(result)
     return same_thing if result[:outcome] == KombatLogic::IDENTICAL
     return display_tie(result) if result[:outcome] == KombatLogic::TIE
-    return display_err(result) if result[:outcome] == KombatLogic::ERROR
+    return display_error(result) if result[:outcome] == KombatLogic::ERROR
     display_winner(result)
   end
 
@@ -33,7 +33,8 @@ module KombatsHelper
 
   def display_error(result)
     safe_join([
-      content_tag(:p, ':(')
+      content_tag(:p, 'Sorry, we hit an error getting character information.'),
+      content_tag(:p, "Error detail from service: #{result[:reason]}")
     ])
   end
 end
