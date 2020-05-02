@@ -7,8 +7,12 @@ nothing but a good time
 </p>
 
 <%= form_with url: kombat_path, method: :post do %>
-  <%= text_field_tag :hero_1, placeholder: 'hero 1' %>
-  <%= text_field_tag :hero_2, placeholder: 'hero 2' %>
+  <%= select_tag :hero_1,
+                 options_for_select(@hero_selection) %>
+
+  <%= select_tag :hero_2,
+                 options_for_select(@hero_selection) %>
+
   <%= submit_tag :submit %>
 <% end %>
 

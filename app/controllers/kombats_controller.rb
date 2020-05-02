@@ -1,6 +1,6 @@
 class KombatsController < ApplicationController
   def index
-    @content = ::MarvelService.new
+    @hero_selection = MarvelService.new.hero_selection.map { |x| [x[:name], x[:id]] }
   end
 
   def fight
