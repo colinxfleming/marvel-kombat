@@ -135,6 +135,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    render_async (2.1.5)
     ruby_dep (1.5.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -192,6 +193,7 @@ DEPENDENCIES
   pry
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.2)
+  render_async
   sass-rails (>= 6)
   spring
   spring-watcher-listen (~> 2.0.0)
