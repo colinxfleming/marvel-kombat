@@ -1,6 +1,6 @@
 # Marvel Kombat
 
-Hello reviewers! Please see below for startup instructions, an explanation of the general flow I took, and 
+Hello reviewers! Please see below for startup instructions, an explanation of the general flow I took, and notes on bodies I left unburied.
 
 ## Assumptions
 
