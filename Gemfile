@@ -20,6 +20,9 @@ gem 'render_async'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # customs
+  gem 'webmock'
 end
 
 group :development do
